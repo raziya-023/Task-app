@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signOut } from 'firebase/auth';
 import { auth } from '../firebase';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
@@ -19,9 +19,16 @@ export default function Signup() {
         }
 
         try {
+        // 1. Create the user
         await createUserWithEmailAndPassword(auth, email, password);
-        toast.success("Account created successfully!");
-        navigate('/'); // Go to dashboard
+        
+        // 2. Immediately sign them out (so they aren't auto-logged in)
+        await signOut(auth);
+
+        // 3. Show success and redirect to Login
+        toast.success("Account created! Please log in.");
+        navigate('/login');
+        
         } catch (error) {
         console.error(error);
         if (error.code === 'auth/email-already-in-use') {
