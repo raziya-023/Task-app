@@ -1,4 +1,4 @@
-# VirtuBox Assessment - Task Manager App
+# Task Manager App
 
 A responsive Task Management application with Authentication and real-time CRUD operations.
 
@@ -119,3 +119,4 @@ This project is created as part of the VirtuBox Assessment.
 - GitHub: [@raziya-023](https://github.com/raziya-023)
 
 ---
+
